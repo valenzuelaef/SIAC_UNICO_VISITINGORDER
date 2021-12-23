@@ -1,0 +1,165 @@
+﻿<div class="col-md-12 column-layout">
+    <div class="bg-container">
+        <!--Title-->
+        <div class="customer-data-title box title-box">
+            <div class="customer-data-title-items customer-data-title-icon" style="width: 5%; padding: 0">
+                <span class="package-icon-agen rounded-circle"></span>
+            </div>
+            <div class="customer-data-title-items customer-data-title-label" style="padding-top: 10px; width: 60%">
+                <span class="panel-titulo-cp">DATOS DE TRANSACCIÓN Y AGENDAMIENTO</span>
+            </div>
+        </div>
+        <!--End Title-->
+        <div class="row">
+            <div class="col-md-4">
+                <label for="company" class="label-cp">Tipo de Trabajo</label>
+                <select id="ddlTypeofJob" name="ddlTipoTrabajo" class="form-control input-sm" validate></select>
+                <p id="ErrorMessageddlTypeofJob" class="alert-danger alert-message"></p>
+            </div>
+            <div class="col-md-4">
+                <label for="company" class="label-cp">Sub Tipo de Trabajo</label>
+                <select id="ddlSubType" name="ddlSubType" class="form-control input-sm" validate></select>
+                <p id="ErrorMessageddlSubType" class="alert-danger alert-message"></p>
+            </div>
+            <div class="col-md-4">
+                <label for="company" class="label-cp">Tipo de Servicio</label>
+                <select id="ddlTypeofService" name="ddlTypeofService" class="form-control input-sm" validate></select>
+                <p id="ErrorMessageddlTypeofService" class="alert-danger alert-message"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label for="company" class="label-cp">Motivo SOT</label>
+                <select id="ddlMotive" name="ddlMotive" class="form-control input-sm" validate></select>
+                <p id="ErrorMessageddlMotive" class="alert-danger alert-message"></p>
+            </div>
+            <div  id ="divAnexos" class="col-md-4" style="visibility:hidden">
+                <label for="company" class="label-cp">Anexos</label>
+                <select id="ddlAnnexes" name="ddlAnnexes" class="form-control input-sm">
+                    <option>-Seleccionar-</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <span>&nbsp;</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+               
+                <label class="label-cp">Fecha de Visita</label>
+                <div class="input-group input-group-sm">
+                    <input type="text" class="form-control input-sm txtCalendar" id="txtCalendar" placeholder="DD/MM/AAAA" validate>
+                    <label id="calendartxtStartDate" class="btn transaction-button-Steps input-group-addon" for="txtCalendar" >
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </label>
+                </div>
+                <p id="ErrorMessagetxtCalendar" class="alert-danger alert-message"></p>
+            </div>
+            <div class="col-md-4">
+                <label class="label-cp">Horario</label>
+                <select id="ddlTimeZone" name="Anexos" class="form-control input-sm" validate></select>
+                <p id="ErrorMessageddlTimeZone" class="alert-danger alert-message"></p>
+            </div>
+            <div class="col-md-4">
+                <span>&nbsp;</span>
+            </div>
+        </div>
+
+
+        <!--Title-->
+        <div class="customer-data-title box title-box">
+            <div class="customer-data-title-items customer-data-title-icon" style="width: 5%; padding: 0">
+                <span class="package-icon-adic rounded-circle"></span>
+            </div>
+            <div class="customer-data-title-items customer-data-title-label" style="padding-top: 10px; width: 60%">
+                <span class="panel-titulo-cp">DATOS ADICIONALES</span>
+            </div>
+        </div>
+        <!--End Title-->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="label-cp">¿Enviar por email?</label>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <input id="chkSendMail" type="checkbox" class="style-checkbox chkSendMail" aria-label="..." checked>
+                            <label for="chkSendMail" class="inline-label "></label>
+                        </span>
+                        <input id="txtSendMail" name="txtSendMail" type="text" class="form-control inputs-cp txtSendMail" value="" aria-label="..." >
+                    </div>
+                    <p id="ErrorMessagetxtSendMail" class="alert-danger alert-message"></p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="company" class="label-cp">Teléfono de Referencia (opcional)</label>
+                <input id="txtTelephone" name="txtTelephone" type="text" class="form-control input-sm" maxlength="12" aria-label="..." />
+            </div>
+
+            <div class="col-md-4">
+                <span>&nbsp;</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label class="label-cp">Punto de Atención</label>
+                <select id="ddlCenterofAttention" class="form-control input-sm ddlCenterofAttention" validate></select>
+                <p id="ErrorMessageddlCenterofAttention" class="alert-danger alert-message"></p>
+            </div>
+
+            <div class="col-md-8">
+                <span>&nbsp;</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label class="label-cp">Notas</label>
+                <textarea id="txtNotes" name="txtNotes" class="form-control input-sm" rows="8"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<style>
+    .datepicker table tr td.disabled {
+        background: red;
+        color: white;
+        cursor: default;
+    }
+
+        .datepicker table tr td.disabled, .datepicker table tr td.disabled:hover {
+            background: red;
+            color: white;
+            cursor: default;
+        }
+</style>
+
+
+<script type="text/javascript">
+    function unavailable(date) {
+        dmy = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+        if ($.inArray(dmy, unavailableDates) == -1) {
+            return [true, ""];
+        } else {
+            return [false, "", "No Disponible"];
+        }
+    }
+
+    var date = new Date();
+    date.setDate(date.getDate());
+    $("#txtCalendar").datepicker({
+        format: 'dd/mm/yyyy',
+        startDate: date,
+        autoclose: true,
+        minDate: 0,
+        // beforeShowDay: unavailable
+    });
+</script>
+
+
+@Scripts.Render("~/bundles/Content/Lib/BloqueoF12")

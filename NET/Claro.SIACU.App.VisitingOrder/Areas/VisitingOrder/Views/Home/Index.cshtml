@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<div class="container-fluid" id="divIndex">
+    <div class="row">
+        <div id="divCustomerDataView" class="col-md-3 column-layout"></div>
+        <div class="col-md-9 column-layout" style="padding: 0">
+            <div id="transactionContent" class="tab-content">
+                @Html.Partial("~/Areas/VisitingOrder/Views/Home/Address.cshtml")
+                @Html.Partial("~/Areas/VisitingOrder/Views/Home/Scheduling.cshtml")
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            &nbsp;
+        </div>
+        <div class="col-md-9 column-layout" style="padding: 0">
+            <div class="footer-info-sot" style="background-color:#747D84;width:100%;height:56px;border-radius:5px;display:none;color:#FFF;text-align:center;padding:10px;font-size:25px">
+            </div>
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/bundles/Content/Lib/BloqueoF12")
+<script src="~/Areas/VisitingOrder/Scripts/Index.js"></script>
