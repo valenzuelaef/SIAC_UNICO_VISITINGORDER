@@ -287,10 +287,6 @@
 
             var that = this,
                 controls = that.getControls();
-            //Session.SessionParams.DATACUSTOMER.ContractID = '29983351';//'29983351' //para generar sot
-            //Session.SessionParams.DATACUSTOMER.CustomerID = '44853381';//'44853381' //para generar sot
-            //Session.SessionParams.DATACUSTOMER.ContractID = "13326803";
-            //Session.SessionParams.DATACUSTOMER.CustomerID = "11619817";
             debugger;
             var plataformaAT = !$.string.isEmptyOrNull(Session.SessionParams.DATACUSTOMER.objPostDataAccount.plataformaAT) ? Session.SessionParams.DATACUSTOMER.objPostDataAccount.plataformaAT : '';
             var idTransactionFront = $.app.getTypeClientAsIsOrToBe(plataformaAT, '4', '12');
@@ -350,7 +346,7 @@
                         //Actualizar el nuevo tipo de trbajo para HFC CBIO
                         that.visitingOrderSession.Data.Configuration.Constantes_Tipotrabajo = Session.SessionParams.DATACUSTOMER.objPostDataAccount.plataformaAT !== 'TOBE' ? that.visitingOrderSession.Data.Configuration.Constantes_Tipotrabajo : '1104';
                     }
-                    
+
                     console.log('Technology: ' + that.visitingOrderSession.Data.Technology)
                     console.log('Constantes_Tipotrabajo: ' + that.visitingOrderSession.Data.Configuration.Constantes_Tipotrabajo)
                     /***FIN-Nuevas configuraciones***/
@@ -692,7 +688,7 @@
 
 
             that.getLoadingPage();
-
+            debugger;
             var objLoadParameters = {};
             objLoadParameters.customer = Session.SessionParams.DATACUSTOMER.CustomerID;
             objLoadParameters.contrato = Session.SessionParams.DATACUSTOMER.ContractID;
@@ -880,7 +876,7 @@
             that.visitingOrderSession.Data.Configuration.Constantes_UsrAplicacion,
             Session.SessionParams.DATACUSTOMER.ContractID,
             Session.SessionParams.DATACUSTOMER.CustomerID,
-            controls.txtNotes.val().replace(/\n/g, "\\n"),
+            controls.txtNotes.val().replace(/\t/g, " ").replace(/\n/g, "\\n"),
             that.visitingOrderSession.Data.Configuration.Constantes_DesProducto,
        /*5*/that.visitingOrderSession.Data.Configuration.Constantes_DesTransaccion,
             that.visitingOrderSession.Data.Configuration.Constantes_TipoSrv,
@@ -1011,7 +1007,7 @@
                             },
                             {
                                 "parametro": "usrProceso",
-                                "valor": that.visitingOrderSession.Data.Configuration.Constantes_UsrAplicacion
+                                "valor": 'USRSIACP'//that.visitingOrderSession.Data.Configuration.Constantes_UsrAplicacion
                             },
                             {
                                 "parametro": "hechoEnUno",
@@ -1019,7 +1015,7 @@
                             },
                             {
                                 "parametro": "Notas",
-                                "valor": $.string.isEmptyOrNull(controls.txtNotes.val()) ? '-' : controls.txtNotes.val().replace(/\n/g, "\\n")
+                                "valor": $.string.isEmptyOrNull(controls.txtNotes.val()) ? '-' : controls.txtNotes.val().replace(/\t/g, " ").replace(/\n/g, "\\n")
                             },
                             {
                                 "parametro": "flagCaso",
@@ -1104,7 +1100,7 @@
                             },
                             {
                                 "parametro": "inter21",
-                                "valor": controls.ddlTypeofService.val()
+                                "valor": $("#ddlTypeofService option:selected").html(),//controls.ddlTypeofService.val()
                             },
                             {
                                 "parametro": "inter22",
@@ -1116,7 +1112,7 @@
                             },
                             {
                                 "parametro": "inter30",
-                                "valor": $.string.isEmptyOrNull(controls.txtNotes.val()) ? '-' : controls.txtNotes.val().replace(/\n/g, "\\n")
+                                "valor": $.string.isEmptyOrNull(controls.txtNotes.val()) ? '-' : controls.txtNotes.val().replace(/\t/g, " ").replace(/\n/g, "\\n")
                             },
                             //{
                             //    "parametro": "P_BIRTHDAY",
@@ -1200,7 +1196,7 @@
                             },
                             {
                                 "parametro": "P_CLARO_NUMBER",
-                                "valor": that.visitingOrderSession.Data.Configuration.Tipificacion_KeyCustomerInteract + that.visitingOrderSession.Data.CustomerInformation.CustomerID
+                                "valor": Session.SessionParams.DATACUSTOMER.ContractID//that.visitingOrderSession.Data.Configuration.Tipificacion_KeyCustomerInteract + that.visitingOrderSession.Data.CustomerInformation.CustomerID
                             },
                             {
                                 "parametro": "P_MONTH",

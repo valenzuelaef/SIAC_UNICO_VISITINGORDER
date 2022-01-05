@@ -53,7 +53,7 @@ namespace Claro.SIACU.App.VisitingOrder.Areas.VisitingOrder.Controllers
                     }
                 },
                 Body = new Models.FranjaHoraria.FranjaHorariaBodyRequest
-        {
+                {
                     FlagValidaEta = request.FlagValidaEta,
                     Disponibilidad = request.Disponibilidad,
                     TipTra = request.TipTra,
@@ -69,11 +69,12 @@ namespace Claro.SIACU.App.VisitingOrder.Areas.VisitingOrder.Controllers
                     Contrato = request.Contrato,
                     ReglaValidacion = request.ReglaValidacion,
                     listaCampoActividadCapacidad = request.listaCampoActividadCapacidad
-        }
+                }
             };
 
             try
             {
+                Tools.Traces.Logging.Info(stridSession, oDataRequest.Audit.Transaction, "Url: " + strUrl);
                 Tools.Traces.Logging.Info(stridSession, oDataRequest.Audit.Transaction, "Request GetDatosFranjaHorario DP PostMigracionPlan: " + JsonConvert.SerializeObject(oDataRequest));
                 oDataResponse = Utils.RestService.PostInvoque<Models.FranjaHoraria.FranjaHorariaResponse>(strUrl, oDataRequest.Audit, oDataRequest, true);
                 Tools.Traces.Logging.Info(stridSession, oDataRequest.Audit.Transaction, "Response GetDatosFranjaHorario DP PostMigracionPlan: " + JsonConvert.SerializeObject(oDataResponse));
@@ -87,7 +88,7 @@ namespace Claro.SIACU.App.VisitingOrder.Areas.VisitingOrder.Controllers
                 oDataResponse = JsonConvert.DeserializeObject<Models.FranjaHoraria.FranjaHorariaResponse>(result);
             }
             return Json(new
-        {
+            {
                 dataCapacity = oDataResponse,
             }, JsonRequestBehavior.AllowGet);
         }
@@ -141,6 +142,7 @@ namespace Claro.SIACU.App.VisitingOrder.Areas.VisitingOrder.Controllers
                     }
                 };
 
+                Tools.Traces.Logging.Info(SessionID, oInitialDataRequest.Audit.Transaction, "Url: " + strUrl);
                 Tools.Traces.Logging.Info(SessionID, oInitialDataRequest.Audit.Transaction, "Request Process 0 - VisitingOrder: " + JsonConvert.SerializeObject(oInitialDataRequest));
                 oInitialDataResponse = Utils.RestService.PostInvoque<Models.InitialData.InitialDataResponse>(strUrl, oInitialDataRequest.Audit, oInitialDataRequest, true);
                 Tools.Traces.Logging.Info(SessionID, oInitialDataRequest.Audit.Transaction, "Response Process 0 - VisitingOrder: " + JsonConvert.SerializeObject(oInitialDataResponse));
@@ -257,6 +259,7 @@ namespace Claro.SIACU.App.VisitingOrder.Areas.VisitingOrder.Controllers
 
             try
             {
+                Tools.Traces.Logging.Info(stridSession, oDatosAcicionalesDataRequest.Audit.Transaction, "Url: " + strUrl);
                 Tools.Traces.Logging.Info(stridSession, oDatosAcicionalesDataRequest.Audit.Transaction, "Request Process 1 - VisitingOrder: " + JsonConvert.SerializeObject(oDatosAcicionalesDataRequest));
                 oDatosAcicionalesDataResponse = Utils.RestService.PostInvoque<DatosAdicionalesResponse>(strUrl, oDatosAcicionalesDataRequest.Audit, oDatosAcicionalesDataRequest, true);
                 Tools.Traces.Logging.Info(stridSession, oDatosAcicionalesDataRequest.Audit.Transaction, "Response Process 1 - VisitingOrder: " + JsonConvert.SerializeObject(oDatosAcicionalesDataResponse));
@@ -318,6 +321,7 @@ namespace Claro.SIACU.App.VisitingOrder.Areas.VisitingOrder.Controllers
                     }
                 };
 
+                Tools.Traces.Logging.Info(SessionID, oTypeofJobRequest.Audit.Transaction, "Url: " + strUrl);
                 Tools.Traces.Logging.Info(SessionID, oTypeofJobRequest.Audit.Transaction, "Request Process 0 - VisitingOrder: " + JsonConvert.SerializeObject(oTypeofJobRequest));
                 oTypeofJobResponse = Utils.RestService.PostInvoque<Models.TypeofJob.TypeofJobResponse>(strUrl, oTypeofJobRequest.Audit, oTypeofJobRequest, true);
                 Tools.Traces.Logging.Info(SessionID, oTypeofJobRequest.Audit.Transaction, "Response Process 0 - VisitingOrder: " + JsonConvert.SerializeObject(oTypeofJobResponse));
@@ -349,25 +353,25 @@ namespace Claro.SIACU.App.VisitingOrder.Areas.VisitingOrder.Controllers
                 strUrl = ConfigurationManager.AppSettings["DPGetObtenerDatosAcionales"];
                 oSubTypeRequest.Audit = oAuditRequest;
                 oSubTypeRequest.MessageRequest = new Models.SubType.SubTypeMessageRequest
-            {
-                Header = new Models.DataPower.HeaderReq
                 {
-                    HeaderRequest = new Models.DataPower.HeaderRequest
+                    Header = new Models.DataPower.HeaderReq
                     {
-                        consumer = "SIACU",
-                        country = "PE",
-                        dispositivo = "MOVIL",
-                        language = "ES",
-                        modulo = "siacu",
-                        msgType = "Request",
-                        operation = "obtenerDatosInicial",
-                        pid = DateTime.Now.ToString("yyyyMMddHHmmssfff"),
-                        system = "SIACU",
-                        timestamp = DateTime.Now.ToString("o"),
-                        userId = Utils.Common.CurrentUser,
-                        wsIp = strIpSession
-                    }
-                },
+                        HeaderRequest = new Models.DataPower.HeaderRequest
+                        {
+                            consumer = "SIACU",
+                            country = "PE",
+                            dispositivo = "MOVIL",
+                            language = "ES",
+                            modulo = "siacu",
+                            msgType = "Request",
+                            operation = "obtenerDatosInicial",
+                            pid = DateTime.Now.ToString("yyyyMMddHHmmssfff"),
+                            system = "SIACU",
+                            timestamp = DateTime.Now.ToString("o"),
+                            userId = Utils.Common.CurrentUser,
+                            wsIp = strIpSession
+                        }
+                    },
                     Body = new Models.SubType.SubTypeBodyRequest
                     {
                         IdTransaccion = oBodyRequest.IdTransaccion,
@@ -377,6 +381,7 @@ namespace Claro.SIACU.App.VisitingOrder.Areas.VisitingOrder.Controllers
                     }
                 };
 
+                Tools.Traces.Logging.Info(SessionID, oSubTypeRequest.Audit.Transaction, "Url: " + strUrl);
                 Tools.Traces.Logging.Info(SessionID, oSubTypeRequest.Audit.Transaction, "Request Process 0 - VisitingOrder: " + JsonConvert.SerializeObject(oSubTypeRequest));
                 oSubTypeResponse = Utils.RestService.PostInvoque<Models.SubType.SubTypeResponse>(strUrl, oSubTypeRequest.Audit, oSubTypeRequest, true);
                 Tools.Traces.Logging.Info(SessionID, oSubTypeRequest.Audit.Transaction, "Response Process 0 - VisitingOrder: " + JsonConvert.SerializeObject(oSubTypeResponse));
@@ -437,8 +442,9 @@ namespace Claro.SIACU.App.VisitingOrder.Areas.VisitingOrder.Controllers
                         IdLista = oBodyRequest.IdLista,
                         cantDeco = oBodyRequest.cantDeco
                     }
-            };
+                };
 
+                Tools.Traces.Logging.Info(SessionID, oTypeofOrderRequest.Audit.Transaction, "Url: " + strUrl);
                 Tools.Traces.Logging.Info(SessionID, oTypeofOrderRequest.Audit.Transaction, "Request Process 0 - VisitingOrder: " + JsonConvert.SerializeObject(oTypeofOrderRequest));
                 oTypeofOrderResponse = Utils.RestService.PostInvoque<Models.TypeofOrder.TypeofOrderResponse>(strUrl, oTypeofOrderRequest.Audit, oTypeofOrderRequest, true);
                 Tools.Traces.Logging.Info(SessionID, oTypeofOrderRequest.Audit.Transaction, "Response Process 0 - VisitingOrder: " + JsonConvert.SerializeObject(oTypeofOrderResponse));
@@ -502,6 +508,7 @@ namespace Claro.SIACU.App.VisitingOrder.Areas.VisitingOrder.Controllers
                     }
                 };
 
+                Tools.Traces.Logging.Info(SessionID, oMotiveRequest.Audit.Transaction, "Url: " + strUrl);
                 Tools.Traces.Logging.Info(SessionID, oMotiveRequest.Audit.Transaction, "Request Process 0 - VisitingOrder: " + JsonConvert.SerializeObject(oMotiveRequest));
                 oMotiveResponse = Utils.RestService.PostInvoque<Models.Motive.MotiveResponse>(strUrl, oMotiveRequest.Audit, oMotiveRequest, true);
                 Tools.Traces.Logging.Info(SessionID, oMotiveRequest.Audit.Transaction, "Response Process 0 - VisitingOrder: " + JsonConvert.SerializeObject(oMotiveResponse));
@@ -576,13 +583,13 @@ namespace Claro.SIACU.App.VisitingOrder.Areas.VisitingOrder.Controllers
            }).ToList().ForEach(y => y.parametros.FirstOrDefault().valor = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(y.parametros.FirstOrDefault().valor)));
 
 
-               request.Servicios.Where(m => m.Servicio == "Constancia")
-                .Select(m => new Models.Transversal.Servicios
-                {
-                    Servicio = m.Servicio,
-                    parametros = m.parametros.Where(u => u.parametro == "DRIVE_CONSTANCIA").ToList()
-                })
-               .ToList().ForEach(y => y.parametros.FirstOrDefault().valor = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(y.parametros.FirstOrDefault().valor)));
+            request.Servicios.Where(m => m.Servicio == "Constancia")
+             .Select(m => new Models.Transversal.Servicios
+             {
+                 Servicio = m.Servicio,
+                 parametros = m.parametros.Where(u => u.parametro == "DRIVE_CONSTANCIA").ToList()
+             })
+            .ToList().ForEach(y => y.parametros.FirstOrDefault().valor = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(y.parametros.FirstOrDefault().valor)));
 
             request.Servicios.Where(m => m.Servicio == "Tramas")
                 .Select(m => new Models.Transversal.Servicios
@@ -591,10 +598,11 @@ namespace Claro.SIACU.App.VisitingOrder.Areas.VisitingOrder.Controllers
                     parametros = m.parametros.Where(u => u.parametro == "Trama_Ventas").ToList()
                 })
                .ToList().ForEach(y => y.parametros.FirstOrDefault().valor = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(y.parametros.FirstOrDefault().valor)));
-         
+
 
             try
             {
+                Tools.Traces.Logging.Info(stridSession, oDataRequest.Audit.Transaction, "Url: " + strUrl);
                 Tools.Traces.Logging.Info(stridSession, oDataRequest.Audit.Transaction, "Request DP PostVisitingOrder: " + JsonConvert.SerializeObject(oDataRequest));
                 oDataResponse = Utils.RestService.PostInvoque<Models.Transversal.GuardarDatosResponse>(strUrl, oDataRequest.Audit, oDataRequest, true);
                 Tools.Traces.Logging.Info(stridSession, oDataRequest.Audit.Transaction, "Response DP PostVisitingOrder: " + JsonConvert.SerializeObject(oDataResponse));
