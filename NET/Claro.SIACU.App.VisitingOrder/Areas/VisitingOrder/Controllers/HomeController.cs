@@ -53,7 +53,7 @@ namespace Claro.SIACU.App.VisitingOrder.Areas.VisitingOrder.Controllers
                     }
                 },
                 Body = new Models.FranjaHoraria.FranjaHorariaBodyRequest
-                {
+        {
                     FlagValidaEta = request.FlagValidaEta,
                     Disponibilidad = request.Disponibilidad,
                     TipTra = request.TipTra,
@@ -69,15 +69,15 @@ namespace Claro.SIACU.App.VisitingOrder.Areas.VisitingOrder.Controllers
                     Contrato = request.Contrato,
                     ReglaValidacion = request.ReglaValidacion,
                     listaCampoActividadCapacidad = request.listaCampoActividadCapacidad
-                }
+        }
             };
 
             try
             {
                 Tools.Traces.Logging.Info(stridSession, oDataRequest.Audit.Transaction, "Url: " + strUrl);
-                Tools.Traces.Logging.Info(stridSession, oDataRequest.Audit.Transaction, "Request GetDatosFranjaHorario DP PostMigracionPlan: " + JsonConvert.SerializeObject(oDataRequest));
+                Tools.Traces.Logging.Info(stridSession, oDataRequest.Audit.Transaction, "Request GetDatosFranjaHorario DP PostVisitingOrder: " + JsonConvert.SerializeObject(oDataRequest));
                 oDataResponse = Utils.RestService.PostInvoque<Models.FranjaHoraria.FranjaHorariaResponse>(strUrl, oDataRequest.Audit, oDataRequest, true);
-                Tools.Traces.Logging.Info(stridSession, oDataRequest.Audit.Transaction, "Response GetDatosFranjaHorario DP PostMigracionPlan: " + JsonConvert.SerializeObject(oDataResponse));
+                Tools.Traces.Logging.Info(stridSession, oDataRequest.Audit.Transaction, "Response GetDatosFranjaHorario DP PostVisitingOrder: " + JsonConvert.SerializeObject(oDataResponse));
             }
             catch (Exception ex)
             {
@@ -88,7 +88,7 @@ namespace Claro.SIACU.App.VisitingOrder.Areas.VisitingOrder.Controllers
                 oDataResponse = JsonConvert.DeserializeObject<Models.FranjaHoraria.FranjaHorariaResponse>(result);
             }
             return Json(new
-            {
+        {
                 dataCapacity = oDataResponse,
             }, JsonRequestBehavior.AllowGet);
         }
@@ -353,25 +353,25 @@ namespace Claro.SIACU.App.VisitingOrder.Areas.VisitingOrder.Controllers
                 strUrl = ConfigurationManager.AppSettings["DPGetObtenerDatosAcionales"];
                 oSubTypeRequest.Audit = oAuditRequest;
                 oSubTypeRequest.MessageRequest = new Models.SubType.SubTypeMessageRequest
+            {
+                Header = new Models.DataPower.HeaderReq
                 {
-                    Header = new Models.DataPower.HeaderReq
+                    HeaderRequest = new Models.DataPower.HeaderRequest
                     {
-                        HeaderRequest = new Models.DataPower.HeaderRequest
-                        {
-                            consumer = "SIACU",
-                            country = "PE",
-                            dispositivo = "MOVIL",
-                            language = "ES",
-                            modulo = "siacu",
-                            msgType = "Request",
-                            operation = "obtenerDatosInicial",
-                            pid = DateTime.Now.ToString("yyyyMMddHHmmssfff"),
-                            system = "SIACU",
-                            timestamp = DateTime.Now.ToString("o"),
-                            userId = Utils.Common.CurrentUser,
-                            wsIp = strIpSession
-                        }
-                    },
+                        consumer = "SIACU",
+                        country = "PE",
+                        dispositivo = "MOVIL",
+                        language = "ES",
+                        modulo = "siacu",
+                        msgType = "Request",
+                        operation = "obtenerDatosInicial",
+                        pid = DateTime.Now.ToString("yyyyMMddHHmmssfff"),
+                        system = "SIACU",
+                        timestamp = DateTime.Now.ToString("o"),
+                        userId = Utils.Common.CurrentUser,
+                        wsIp = strIpSession
+                    }
+                },
                     Body = new Models.SubType.SubTypeBodyRequest
                     {
                         IdTransaccion = oBodyRequest.IdTransaccion,
@@ -442,7 +442,7 @@ namespace Claro.SIACU.App.VisitingOrder.Areas.VisitingOrder.Controllers
                         IdLista = oBodyRequest.IdLista,
                         cantDeco = oBodyRequest.cantDeco
                     }
-                };
+            };
 
                 Tools.Traces.Logging.Info(SessionID, oTypeofOrderRequest.Audit.Transaction, "Url: " + strUrl);
                 Tools.Traces.Logging.Info(SessionID, oTypeofOrderRequest.Audit.Transaction, "Request Process 0 - VisitingOrder: " + JsonConvert.SerializeObject(oTypeofOrderRequest));
@@ -583,13 +583,13 @@ namespace Claro.SIACU.App.VisitingOrder.Areas.VisitingOrder.Controllers
            }).ToList().ForEach(y => y.parametros.FirstOrDefault().valor = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(y.parametros.FirstOrDefault().valor)));
 
 
-            request.Servicios.Where(m => m.Servicio == "Constancia")
-             .Select(m => new Models.Transversal.Servicios
-             {
-                 Servicio = m.Servicio,
-                 parametros = m.parametros.Where(u => u.parametro == "DRIVE_CONSTANCIA").ToList()
-             })
-            .ToList().ForEach(y => y.parametros.FirstOrDefault().valor = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(y.parametros.FirstOrDefault().valor)));
+               request.Servicios.Where(m => m.Servicio == "Constancia")
+                .Select(m => new Models.Transversal.Servicios
+                {
+                    Servicio = m.Servicio,
+                    parametros = m.parametros.Where(u => u.parametro == "DRIVE_CONSTANCIA").ToList()
+                })
+               .ToList().ForEach(y => y.parametros.FirstOrDefault().valor = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(y.parametros.FirstOrDefault().valor)));
 
             request.Servicios.Where(m => m.Servicio == "Tramas")
                 .Select(m => new Models.Transversal.Servicios

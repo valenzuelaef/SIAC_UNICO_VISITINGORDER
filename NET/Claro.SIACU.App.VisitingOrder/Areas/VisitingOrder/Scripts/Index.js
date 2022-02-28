@@ -339,12 +339,12 @@
                     debugger;
                     if (that.visitingOrderSession.Data.Technology == "9") {
                         //Actualizar el nuevo tipo de trbajo para FTTH CBIO
-                        that.visitingOrderSession.Data.Configuration.Constantes_TipoSrv = Session.SessionParams.DATACUSTOMER.objPostDataAccount.plataformaAT !== 'TOBE' ? that.visitingOrderSession.Data.Configuration.Constantes_Tipotrabajo : '0101';
-                        that.visitingOrderSession.Data.Configuration.Constantes_Tipotrabajo = Session.SessionParams.DATACUSTOMER.objPostDataAccount.plataformaAT !== 'TOBE' ? that.visitingOrderSession.Data.Configuration.Constantes_Tipotrabajo : '1103';
+                        that.visitingOrderSession.Data.Configuration.Constantes_TipoSrv = Session.SessionParams.DATACUSTOMER.objPostDataAccount.plataformaAT != 'TOBE' ? that.visitingOrderSession.Data.Configuration.Constantes_Tipotrabajo : '0101';
+                        that.visitingOrderSession.Data.Configuration.Constantes_Tipotrabajo = Session.SessionParams.DATACUSTOMER.objPostDataAccount.plataformaAT != 'TOBE' ? that.visitingOrderSession.Data.Configuration.Constantes_Tipotrabajo : '1103';
                     }
                     if (that.visitingOrderSession.Data.Technology == "5") {
                         //Actualizar el nuevo tipo de trbajo para HFC CBIO
-                        that.visitingOrderSession.Data.Configuration.Constantes_Tipotrabajo = Session.SessionParams.DATACUSTOMER.objPostDataAccount.plataformaAT !== 'TOBE' ? that.visitingOrderSession.Data.Configuration.Constantes_Tipotrabajo : '1104';
+                        that.visitingOrderSession.Data.Configuration.Constantes_Tipotrabajo = Session.SessionParams.DATACUSTOMER.objPostDataAccount.plataformaAT != 'TOBE' ? that.visitingOrderSession.Data.Configuration.Constantes_Tipotrabajo : '1104';
                     }
 
                     console.log('Technology: ' + that.visitingOrderSession.Data.Technology)
@@ -370,6 +370,7 @@
                     });
                     // Load Address Instalation Customer - Top Panel
                     that.renderAddressInstalation();
+
 
                     $.reusableBusiness.LoadPointOfAttention(controls.ddlCenterofAttention, that.visitingOrderSession);
 
@@ -408,6 +409,7 @@
             console.log('stateContracto: ' + stateContract);
             console.log('stateService:  ' + stateService);
             console.log('Plataforma:  ' + Session.SessionParams.DATACUSTOMER.objPostDataAccount.plataformaAT);
+            console.log('coIdPub:  ' + Session.SessionParams.DATACUSTOMER.objPostDataAccount.coIdPub);
             if (!$.array.isEmptyOrNull(that.visitingOrderSession.Data.CustomerInformation)) {
 
                 if (Session.SessionParams.DATACUSTOMER.objPostDataAccount.plataformaAT === 'TOBE') {
@@ -1043,11 +1045,11 @@
                                 "valor": ""
                             },
                             {
-                                "parametro": "MARITAL_STATUS",
+                                "parametro": "P_MARITAL_STATUS",//"MARITAL_STATUS",//No llega
                                 "valor": that.getFechaActual()
                             },
                             {
-                                "parametro": "xinter2",
+                                "parametro": "xinter2", //No llega
                                 "valor": that.visitingOrderSession.Data.Direccion.Departamento
                             },
                             {
@@ -1084,7 +1086,7 @@
                             },
                             {
                                 "parametro": "inter17",
-                                "valor": controls.ddlTypeofJob.val()
+                                "valor": $("#ddlTypeofJob option:selected").html()//controls.ddlTypeofJob.val()
                             },
                             {
                                 "parametro": "inter18",
@@ -1092,15 +1094,15 @@
                             },
                             {
                                 "parametro": "inter19",
-                                "valor": controls.ddlMotive.val()
+                                "valor": $("#ddlMotive option:selected").html()// controls.ddlMotive.val()
                             },
                             {
                                 "parametro": "inter20",
-                                "valor": that.getFechaActual()
+                                "valor": $("#txtCalendar").val()//that.getFechaActual()
                             },
                             {
                                 "parametro": "inter21",
-                                "valor": $("#ddlTypeofService option:selected").html(),//controls.ddlTypeofService.val()
+                                "valor": $("#ddlTypeofService option:selected").html()//controls.ddlTypeofService.val()
                             },
                             {
                                 "parametro": "inter22",
@@ -1127,7 +1129,7 @@
                             //    "valor": ""
                             //},
                             {
-                                "parametro": "P_ADDRESS",
+                                "parametro": "P_ADDRESS5",//X_ADDRESS//No llega
                                 "valor": that.visitingOrderSession.Data.Direccion.Direccion
                             },
                             //{
@@ -1195,7 +1197,7 @@
                                 "valor": controls.txtSendMail.val()
                             },
                             {
-                                "parametro": "P_CLARO_NUMBER",
+                                "parametro": "P_CLARO_NUMBER",//No llega
                                 "valor": Session.SessionParams.DATACUSTOMER.ContractID//that.visitingOrderSession.Data.Configuration.Tipificacion_KeyCustomerInteract + that.visitingOrderSession.Data.CustomerInformation.CustomerID
                             },
                             {
@@ -1207,7 +1209,7 @@
                                 "valor": ""
                             },
                             {
-                                "parametro": "P_CITY",
+                                "parametro": "P_CITY",//No llega
                                 "valor": that.visitingOrderSession.Data.Direccion.Ubigeo
                             },
                             {
@@ -1215,7 +1217,7 @@
                                 "valor": ""
                             },
                             {
-                                "parametro": "P_DISTRICT",
+                                "parametro": "P_DISTRICT",//No llega
                                 "valor": that.visitingOrderSession.Data.Direccion.NotaDireccion
                             },
                             {
@@ -1231,7 +1233,7 @@
                                 "valor": that.visitingOrderSession.Data.CustomerInformation.CustomerType
                             },
                             {
-                                "parametro": "P_DOCUMENT_NUMBER",
+                                "parametro": "P_DOCUMENT_NUMBER",//No llega
                                 "valor": that.visitingOrderSession.Data.CustomerInformation.DocumentNumber
                             },
                             {
