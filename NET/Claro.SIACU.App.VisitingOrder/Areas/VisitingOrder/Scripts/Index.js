@@ -349,7 +349,7 @@
 
                     console.log('Technology: ' + that.visitingOrderSession.Data.Technology)
                     console.log('Constantes_Tipotrabajo: ' + that.visitingOrderSession.Data.Configuration.Constantes_Tipotrabajo)
-                    /***FIN-Nuevas configuraciones***/
+					 /***FIN-Nuevas configuraciones***/
 
                     $.reusableBusiness.getIgv(that.visitingOrderSession.Data.ListIgv, function (igv) {
 
@@ -370,8 +370,8 @@
                     });
                     // Load Address Instalation Customer - Top Panel
                     that.renderAddressInstalation();
-
-
+					
+					
                     $.reusableBusiness.LoadPointOfAttention(controls.ddlCenterofAttention, that.visitingOrderSession);
 
                     controls.ddlSubType.append($('<option>', { value: '', html: '-Seleccionar-' }));
@@ -409,7 +409,7 @@
             console.log('stateContracto: ' + stateContract);
             console.log('stateService:  ' + stateService);
             console.log('Plataforma:  ' + Session.SessionParams.DATACUSTOMER.objPostDataAccount.plataformaAT);
-            console.log('coIdPub:  ' + Session.SessionParams.DATACUSTOMER.objPostDataAccount.coIdPub);
+			console.log('coIdPub:  ' + Session.SessionParams.DATACUSTOMER.objPostDataAccount.coIdPub);
             if (!$.array.isEmptyOrNull(that.visitingOrderSession.Data.CustomerInformation)) {
 
                 if (Session.SessionParams.DATACUSTOMER.objPostDataAccount.plataformaAT === 'TOBE') {
@@ -1046,7 +1046,7 @@
                             },
                             {
                                 "parametro": "P_MARITAL_STATUS",//"MARITAL_STATUS",//No llega
-                                "valor": that.getFechaActual()
+                                "valor": that.getFechaActual() 
                             },
                             {
                                 "parametro": "xinter2", //No llega
